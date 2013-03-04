@@ -1,1 +1,15 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #3a3934;
+}
 
+footer {
+    height: 100px;
+}
+
+footer .container {
+    height: 100px;
+    width: 100%;
+    background-color: #3085c6;
+}
