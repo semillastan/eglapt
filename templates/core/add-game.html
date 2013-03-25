@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Game {% endblock %}
+
+{% block body %}
+    <div class="row">
+	<div class="span4">
+	    <ul class="nav nav-tabs nav-stacked">
+		<li><a href="{% url all-games %}">All Games</a></li>
+		<li><a href="">My Games</a></li>
+		<li><a href="">Games Played</a></li>
+	    </ul>
+	</div>
+	<div class="span8">
+	    <form class="form-horizontal" action="{% url add-game %}" method='post'>{% csrf_token %}
+		<fieldset>
+		    <legend>Add Game</legend>
+		    <label>Name</label>
+		    {{ form.name }}
+		    <label>Description</label>
+		    {{ form.description }}
+		    <label>Date Created</label>
+		    <input type="text" name="date_created" data-date-format="mm/dd/yy" id="dp">
+		    <div class="form-actions">
+			<button type="submit" class="btn btn-primary">Add Game</button>
+			<button type="button" class="btn">Cancel</button>
+		    </div>
+		</fieldset>
+	    </form>
+	</div>
+{% endblock %}
+
+{% block js %}
+    <script>
+	$(document).ready(function(){
+	    $('#dp').datepicker();
+	});
+    </script>
+{% endblock %}

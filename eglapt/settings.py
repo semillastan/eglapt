@@ -16,13 +16,13 @@ LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+USE_TZ = False
 
 MEDIA_ROOT = os.path.join(ROOT_DIR, '..', 'media')
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(ROOT_DIR, '..', 'static')
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 UPLOAD_DIR = 'uploads'
 UPLOAD_ROOT = os.path.join(MEDIA_ROOT, UPLOAD_DIR)
@@ -72,8 +72,23 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     
+    'registration',
     'south', # Used for database migrations
+    'tastypie',
+    
+    'accounts',
+    'core',
 )
+
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+ACCOUNT_ACTIVATION_DAYS = 7
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'semillastan@gmail.com'
+EMAIL_HOST_PASSWORD = 'kapitanKamote'
+EMAIL_USE_TLS = True
 
 LOGGING = {
     'version': 1,

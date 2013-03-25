@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Game Level {% endblock %}
+
+{% block body %}
+    <div class="row">
+	<div class="span4">
+	    <ul class="nav nav-tabs nav-stacked">
+		<li><a href="{% url view-game game.id %}">View Game</a></li>
+		<li><a href="">My Games</a></li>
+		<li><a href="">Games Played</a></li>
+	    </ul>
+	</div>
+	<div class="span8">
+	    <form class="form-horizontal" action="{% url add-game-level game.id %}" method='post'>{% csrf_token %}
+		<fieldset>
+		    <legend><h2>{{ game.name }} </h2>Add Game Level</legend>
+		    <label>Level</label>
+		    {{ form.level }}
+		    <label>Difficulty</label>
+		    {{ form.difficulty }}
+		    <label>Max Score</label>
+		    {{ form.max_score }}
+		    <label>Max Playing Time</label>
+		    {{ form.max_playing_time_value }}
+		    {{ form.max_playing_time_unit }}
+		    <div class="form-actions">
+			<button type="submit" class="btn btn-primary">Add Game Level</button>
+			<button type="button" class="btn">Cancel</button>
+		    </div>
+		</fieldset>
+	    </form>
+	</div>
+{% endblock %}
+
+{% block js %}
+    <script>
+	$(document).ready(function(){
+	});
+    </script>
+{% endblock %}

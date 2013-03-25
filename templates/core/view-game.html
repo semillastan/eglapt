@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ game.name }} {% endblock %}
+
+{% block body %}
+    <div class="row">
+	<div class="span4">
+	    <ul class="nav nav-tabs nav-stacked">
+		<li><a href="{% url add-game-level game.id %}">Add Game Level</a></li>
+		<li><a href="">My Games</a></li>
+		<li><a href="">Games Played</a></li>
+	    </ul>
+	</div>
+	<div class="span8">
+	    <div class="game">
+		<dl class="dl-horizontal">
+		    <dt></dt><dd><h2><a href="{% url view-game game.id %}">{{ game.name }}</a></h2></dd>
+		    <dt>Game ID</dt><dd>{{ game.game_id }}</dd>
+		    <dt>API Key</dt><dd>{{ game.api_key }}</dd>
+		    <dt>Date Created</dt><dd>{{ game.date_created }}</dd>
+		    <dt>Created By</dt><dd>{{ game.created_by }}</dd>
+		</dl>
+	    </div>
+	    <hr>
+	    <div class="game-levels">
+		<table class="table table-hover">
+		    <thead>
+			<tr>
+			    <th>Level</th>
+			    <th>Difficulty</th>
+			    <th>Max Score</th>
+			    <th>Max Playing Time</th>
+			</tr>
+		    </thead>
+		    <tbody>
+			{% for level in levels %}
+			<tr>
+			    <td>{{ level.level }}</td>
+			    <td>{{ level.difficulty }}</td>
+			    <td>{{ level.max_score }}</td>
+			    <td>{{ level.max_playing_time_value }} {{ level.max_playing_time_unit }}</td>
+			    <td><a class="btn" href="{% url add-apt game.id level.id %}">Submit APT</a></td>
+			    <td><a class="btn" href="{% url view-apts game.id level.id %}">View APTs</a></td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	    </div>
+	</div>
+    </div>
+{% endblock %}

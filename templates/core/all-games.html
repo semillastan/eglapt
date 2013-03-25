@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Games {% endblock %}
+
+{% block body %}
+    <div class="row">
+	<div class="span4">
+	    <ul class="nav nav-tabs nav-stacked">
+		<li><a href="{% url add-game %}">Add Game</a></li>
+		<li><a href="">My Games</a></li>
+		<li><a href="">Games Played</a></li>
+	    </ul>
+	</div>
+	<div class="span8">
+	    {% for game in games %}
+		<div class="game">
+		    <p><a href="{% url view-game game.id %}">{{ game.name }}</a></p>
+		    <p>{{ game.game_id }}</p>
+		    <p>{{ game.api_key }}</p>
+		</div>
+		<hr>
+	    {% endfor %}
+	</div>
+    </div>
+{% endblock %}

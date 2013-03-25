@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="dump"></div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function(){
+            // This may require the ``json2.js`` library for older browsers.
+            var data = JSON.stringify({
+                "date_added": "2011-03-25", 
+                "date_played": "2011-03-04", 
+                "game_level": "/api/v1/level/1/",
+                "playing_time": "00:03:45", 
+                "total_score": 34,
+            });
+            
+            alert(data);
+
+            $.ajax({
+              url: 'http://localhost:8000/api/v1/apt/?format=json&username=semillastan&api_key=c562ff369d5f14d12c4107aeac62093620fbfb35',
+              type: 'POST',
+              contentType: 'application/json',
+              data: data,
+              dataType: 'json',
+              processData: false
+            })
+        });
+    </script>
+{% endblock %}

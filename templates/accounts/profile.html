@@ -1,0 +1,16 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}{{ profile.user.username }}{% endblock %}
+
+{% block body %}
+	<span class="page-title">+{{ user }}</span>
+	<div class="user-profile">
+		<div class="info big"><span class="label">name: </span><span class="entry big">{% if user.first_name %}{{ user.first_name }} {{ user.last_name }}{% else %} N/A{% endif %}</span></div>
+		<div class="info"><span class="label">email: </span><span class="entry small">{{ user.email }}</span></div>
+		<br />
+		<div class="info"><span class="label">location: </span><span class="entry small">{{ profile.city }}, {{ profile.country }}</span></div>
+		<div class="info"><span class="label">birthday: </span><span class="entry small">{% if profile.birthday %}{{ profile.birthday|date:"j F Y" }}{% endif %}</span></div>
+		<div class="info"><span class="label">gender: </span><span class="entry small">{{ profile.gender|lower }}</span></div>
+		<div class="info"><span class="label">status: </span><span class="entry small">{{ profile.marital_status|lower }}</span></div>
+	</div>
+{% endblock %}

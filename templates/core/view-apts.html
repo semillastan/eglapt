@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ level.game.name }} {% endblock %}
+
+{% block body %}
+    <div class="row">
+	<div class="span4">
+	    <ul class="nav nav-tabs nav-stacked">
+		<li><a href="{% url view-game level.game.id %}">View Game</a></li>
+		<li><a href="">My Games</a></li>
+		<li><a href="">Games Played</a></li>
+	    </ul>
+	</div>
+	<div class="span8">
+	    <div class="game">
+		<dl class="dl-horizontal">
+		    <dt></dt><dd><h2><a href="{% url view-game level.game.id %}">{{ game.name }}</a></h2></dd>
+		    <dt>Game ID</dt><dd>{{ game.game_id }}</dd>
+		    <dt>API Key</dt><dd>{{ game.api_key }}</dd>
+		    <dt>Date Created</dt><dd>{{ game.date_created }}</dd>
+		    <dt>Created By</dt><dd>{{ game.created_by }}</dd>
+		</dl>
+	    </div>
+	    <hr>
+	    <div class="game-levels">
+		<h4>APTs for Level {{ level.level }}</h4>
+		<table class="table table-hover">
+		    <thead>
+			<tr>
+			    <th>Date Played</th>
+			    <th>Total Score</th>
+			    <th>Playing Time</th>
+			</tr>
+		    </thead>
+		    <tbody>
+			{% for apt in apts %}
+			<tr>
+			    <td>{{ apt.date_played }}</td>
+			    <td>{{ apt.total_score }}</td>
+			    <td>{{ apt.playing_time|time:"H:i:s" }}</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	    </div>
+	</div>
+    </div>
+{% endblock %}
